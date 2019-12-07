@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Play</title>
+	<style type="text/css">
+		@media(min-width: 800px){
+			.container{
+			text-align: center;
+			margin-top: 8%;
+			display: flex;
+			justify-content: center;
+			
+		}	
+		}
+		body{
+			background-color: #333;
+		}
+		.hover{
+
+			border-radius: 50%;
+			background-color:  rgba(255,0,21,0.4);	
+
+		}
+		
+		.container div{
+			border: 1px solid  rgba(255,0,21,0.4);
+			color: rgba(204,204,0,1);
+			/*padding: 5px;*/
+		}
+		.box {
+			width: 30%;
+			transition-property: all; 
+			transition-duration:1s;
+
+			/*transition-timing-function: ease-in; */
+		}
+		.final{
+			/*transition-property: all;
+			transition-duration: 2s;
+			font-size: 20px;*/
+			/*background-color: rgba(51,153,0,0.5);*/
+			font-size: 40px;
+			font-style: italic;
+			color: rgba(255,0,0,0.8	);
+			text-align: center;
+
+		}
+		.box:visited{
+			transform: rotate3d(180deg);
+		}
+		.box:hover{
+			background-color: rgba(255,0,21,0.4);
+			border-radius: 50%;
+			width: 50%;
+			/*transform: rotateZ(360deg);*/
+		}
+		
+		div h1{
+			text-align: center;
+		}
+
+		.btn{
+			font-size: 20px;
+			background-color: black;
+			color: rgba(255,0,21,0.5);
+			padding: 5px;
+			border:none;
+			border-radius: 20%;
+			top: 80%;
+			left: 35%;
+			position: absolute;
+			width: 30%
+		}
+	</style>
+
+</head>
+<body >
+
+	<div>
+		<h1 style="color: rgba(204,204,0,1);">Rock Paper Scissor</h1>
+	</div>
+	<h3 style="color: rgba(204,204,0,1);margin-left: 10%">Click on your choice</h3>
+	<div class=" container">
+		<div class=" box"   id="paper">
+			<p class="text-center ">Paper</p>
+			<img src="https://static.thenounproject.com/png/477922-200.png" >
+		</div>
+		<div class=" box" id="scissor">
+			<p >Scissor</p>
+			<img src="https://static.thenounproject.com/png/477919-200.png" >
+		</div>
+		<div class=" box" id="rock">
+			<p  >Rock</p>
+			<img src="https://static.thenounproject.com/png/477918-200.png" >
+		</div>
+	</div>
+	</div>
+	<p class="result  final"></p>	
+	<button id="button" class="btn"></button> 
+	<script type="text/javascript">
+		setTimeout(function () {
+	var rock=document.querySelector("#rock") ;
+	var paper=document.querySelector("#paper") ;
+	var scissor=document.querySelector("#scissor");
+	var result=document.getElementsByClassName("result");
+	var btn=document.getElementById("button");
+	var computerSelect=Math.floor(Math.random()*3);
+	var userSelect;
+	var res;
+	var flag=0;
+	rock.addEventListener("click",function(){
+		if (flag==0) {
+		userSelect=0;
+		res=winner(userSelect,computerSelect);
+		rock.classList.add("hover");
+		result[0].textContent=res;
+		result[0].classList.add("final");
+
+		flag=1;
+		btn.textContent="Play Again";
+		}
+
+	}) 
+	paper.addEventListener("click",function(){
+		if (flag==0) {
+		userSelect=1;
+		paper.classList.add("hover");
+		res=winner(userSelect,computerSelect);
+		result[0].textContent=res;
+		result[0].classList.add("final");
+		flag=1;
+		btn.textContent="Play Again";
+		}
+	}) 
+	scissor.addEventListener("click",function(){
+		if (flag==0) {
+		userSelect=2;
+		scissor.classList.add("hover");
+		res=winner(userSelect,computerSelect);
+		result[0].textContent=res;
+		result[0].classList.add("final");
+		flag=1;
+		btn.textContent="Play Again";
+		}
+	}) 
+	btn.addEventListener("click",function(){
+		flag=0;
+
+		result[0].textContent="";
+		btn.textContent="";
+		rock.classList.remove("hover");
+		paper.classList.remove("hover");
+		scissor.classList.remove("hover");
+
+		computerSelect=Math.floor(Math.random()*3);
+	})
+	
+		
+	function winner(userSelect,computerSelect){
+
+		if(userSelect==0&&computerSelect==0){
+			return "Its a Tie!!! Computer also Selected Rock ";
+		}
+		else if(userSelect==0&&computerSelect==1){
+			return "You Lose !!! Computer Selected paper ";
+		}
+		else if(userSelect==0&&computerSelect==2){
+			return "Hurry You Win!! " ;
+		}
+		else if(userSelect==1&&computerSelect==0){
+			return "Hurry You Win!!! ";
+		}
+		else if(userSelect==1&&computerSelect==1){
+			return "Its a Tie !!! Computer also Selected paper"; 
+		}
+		else if(userSelect==1&&computerSelect==2){
+			return "You Lose!! Computer Selected scissor ";
+		}
+		else if(userSelect==2&&computerSelect==0){
+			return "You Lose!!! Computer Selected paper";
+		}
+		else if(userSelect==2&&computerSelect==1){
+			return "Hurry You Win !!!"
+		}
+		else {
+			return "Its a tie!! Computer also Selected scissor";
+		}
+	}
+
+
+},50)
+	</script>
+	
+</body>
+</html>
